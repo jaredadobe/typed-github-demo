@@ -5,7 +5,25 @@ import { List } from './collections.js';
 import { AppUI } from './app-ui.js';
 
 const users: Array<string> = [
-  'DamonOehlman'
+  'DamonOehlman',
+  'alexreardon',
+  'wcurrie',
+  'jramoyo',
+  'johnk-',
+  'FagnerMartinsBrack',
+  'vinidel',
+  'lfoxton',
+  'arattihalli',
+  'mpeyper',
+  'iknowcss',
+  'karl_roberts',
+  'phillee007',
+  'marukami',
+  'annguyen2210',
+  'jchen86',
+  'rkazakov',
+  'gaz77a',
+  'twalve',
 ];
 
 class GithubUserWithImage {
@@ -19,12 +37,17 @@ class GithubUserWithImage {
 }
 
 Promise.all(users.map(fetchUser))
+  .then(users => users.filter(Boolean))
   .then(users => fetchAvatars(users))
   .then(usersWithImages => appendAvatar(usersWithImages))
   .catch((err: Error) => reportError(err));
 
 function byFullName(a: GithubUser, b: GithubUser): number {
-  return a.name.localeCompare(b.name);
+  if (a.name && b.name) {
+    return a.name.localeCompare(b.name);
+  }
+
+  return 0;
 }
 
 function fetchAvatars(users) {
