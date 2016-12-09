@@ -36,7 +36,6 @@ export function fetchUser(name: string): Promise<?GithubUser> {
     .then((response: Response) => {
       if (!REGEX_OK_STATUS.test(String(response.status))) {
         return null;
-        // throw new Error(`Error requesting user: ${name}`);
       }
 
       return response.json();
@@ -54,7 +53,7 @@ export function fetchUser(name: string): Promise<?GithubUser> {
         return null;
       }
 
-      throw new Error('Could not parse response from github API');
+      throw new Error(`Could not parse response from github API for ${name}`);
     });
 };
 
